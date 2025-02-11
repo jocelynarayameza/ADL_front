@@ -38,27 +38,27 @@ const products = [{
     id_product: 5,
     product_name: 'Vinilo de FFXIV HEAVENSWARD Vol.2',
     product_price: 29990,
-    product_photo: 'https://i.etsystatic.com/18833319/r/https/33060a/6237173934/il_794xN.6237173934_n489.jpg',
+    product_photo: 'https://cdn11.bigcommerce.com/s-6rs11v9w2d/images/stencil/1280x1280/products/3126/16335/HEAVENSWARD_Vinyl_LP_Vol._2__36754.1698706501.jpg?c=1',
     category: 'Musica',
     product_description: 'Pin de fates de FFXIV Haurchefant.Origen: Indonesia',
     product_quantity: 10,
     seller:'SQUARE ENIX store'
 },{
     id_product: 6,
-    product_name: 'Vinilo de Moogle HEAVENSWARD Vol.2',
+    product_name: 'Peluche de Moogle/Moguri',
     product_price: 12990,
-    product_photo: 'https://i.resize.com/18833319/r/https/33060a/6237173934/il_794xN.6237173934_n489.jpg',
+    product_photo: 'https://cdn11.bigcommerce.com/s-6rs11v9w2d/images/stencil/1280x1280/products/1466/14898/beb55fbe116f6cecac78987a5e8bc243__21309.1684895420.jpg?c=1',
     category: 'Peluche',
-    product_description: 'Pin approx fates de FFXIV Haurchefant.Origen: Indonesia',
+    product_description: 'A reprint of the cute plush of Moogle, the traditional mascot of the FINAL FANTASY series. This Moogle is based on Lulus plush Moogle doll from FINAL FANTASY X. Made like a teddy bear it has moveable arms and legs',
     product_quantity: 6,
-    seller:'SQUARE Otaku store'
+    seller:'SQUARE Enix store'
 },{
     id_product: 7,
-    product_name: 'Vinilo de pixel HEAVENSWARD Vol.2',
+    product_name: 'Pixel art ff9 6 personajes',
     product_price: 40000,
-    product_photo: 'https://i.resize.com/com/r/https/33060a/6237173934/il_794xN.6237173934_n489.jpg',
+    product_photo: 'https://i.pinimg.com/736x/7d/68/5a/7d685a1a8a7cc35b45b386ad2239cbd8.jpg',
     category: 'Pixel art',
-    product_description: 'Pin approx personajes de FFXIV Haurchefant.Origen: Indonesia',
+    product_description: 'pixel art hecho de hama beads de 6 personajes del juego FF9',
     product_quantity: 2,
     seller:'RoninsArt'
 }];
