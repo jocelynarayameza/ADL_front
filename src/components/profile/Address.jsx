@@ -6,10 +6,30 @@ import useInput from '../../assets/hooks/useInput';
 import { UserContext } from '../../context/UserContext';
 
 const Address = () => {
-  const adress=useInput("")
+  const {userLog,setUserLog} = useContext(UserContext)
+
+  let address = userLog.adress;
+  const addressChange=useInput("")
 
   const handleSubmit = (e)=>{
-    e.preventdefault()
+    e.preventDefault()
+
+    if(addressChange.value!=""){
+      address=addressChange.value
+    }
+    setUserLog({...userLog,address})
+      // try {
+    //   const response= await axios.put("http://localhost:3001/api/perfil", {userLog})
+
+    //    Swal.fire({
+        //   title: "Direccion editada con exito",
+        //   icon: "success",
+        //   confirmButtonColor: "#68D5E8",
+        //   color:"#323232"
+        // })
+    // } catch (error) {
+      // console.error("Error al editar direccion:", error);
+    // }
   }
 
   return (
@@ -25,7 +45,7 @@ const Address = () => {
             <Col xs={12} sm={8}>
               <Form.Group className="mb-3"  controlId="formBasicAdress">
                <Form.Label>Direccion actual</Form.Label>
-               <Form.Control className='adressColor' type="text" placeholder="Calle 8, Lindblum, Gaia" {...adress} />
+               <Form.Control className='adressColor' type="text" placeholder={address} {...addressChange} />
               </Form.Group>
             </Col>
             <Col xs={12} sm={4}>

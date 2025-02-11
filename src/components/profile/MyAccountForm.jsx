@@ -7,30 +7,57 @@ import { UserContext } from '../../context/UserContext';
 
 const MyAccountForm = () => {
 
-  const {user,profileUserfunc}=useContext(UserContext)
+  const {user,profileUserfunc,userLog,setUserLog}=useContext(UserContext)
   // profileUserfunc()
-  const name=user.name;
+  let name=userLog.name;
   const nameChange=useInput("")
 
-  const lastname=user.lastname;
-  const lastNameChange=useInput("")
+  let lastname=userLog.lastname;
+  const lastnameChange=useInput("")
 
-  const username=user.username
-  const birthday = user.birthday
+  const username=userLog.username
+  const birthday = userLog.birthday
   
 
-  const password=useInput("");
-  const passwordChange=useInput("");
+  let password=userLog.password;
+  const passwordChange=useInput("")
+  
 
-  const email=user.email;
+  let email=userLog.email;
   const emailChange=useInput("");
 
  
 
-  
-  
   const handleSubmit = (e)=> {
     e.preventDefault()
+ 
+    
+    if(nameChange.value!=""){
+      name=nameChange.value
+    }
+    if(lastnameChange.value!=""){
+      lastname=lastnameChange.value
+    }
+    if(passwordChange.value!=""){
+      password=passwordChange.value
+    }
+    if(emailChange.value!=""){
+      email=emailChange.value
+    }
+   setUserLog({...userLog,name,lastname,password,email})
+   console.log("perfil",userLog);
+      // try {
+    //   const response= await axios.put("http://localhost:3001/api/perfil", {userLog})
+
+    //    Swal.fire({
+        //   title: "Perfil editado con exito",
+        //   icon: "success",
+        //   confirmButtonColor: "#68D5E8",
+        //   color:"#323232"
+        // })
+    // } catch (error) {
+      // console.error("Error al editar datos:", error);
+    // }
 
   }
 
@@ -55,7 +82,7 @@ const MyAccountForm = () => {
               <Form.Group className="mb-3" controlId="formBasicLastName">
                 <Form.Label>Apellido</Form.Label>
                 <Form.Control className='registerLoginColor' type="text"
-                placeholder={lastname} {...lastNameChange}
+                placeholder={lastname} {...lastnameChange}
                 />
               </Form.Group>
 

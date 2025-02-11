@@ -1,30 +1,54 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useId, useState } from 'react'
 import { Col, Container, FloatingLabel, FormGroup, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import useInput from '../../assets/hooks/useInput';
 import { UserContext } from '../../context/UserContext';
 import { Search } from 'react-bootstrap-icons';
+import { ProductContext } from '../../context/ProductContext';
 
 const NewPostForm = () => {
+  const {products,setProducts} = useContext(ProductContext)
   const product_name=useInput("");
   const product_price=useInput("");
   const product_quantity=useInput("");
   const product_photo=useInput("");
   const product_description=useInput("");
-  const category=useInput("");
+  const product_category=useInput("");
   const search=useInput("")
-  
-
-  const {registerUser}=useContext(UserContext)
-
+  const id=useId()
   
   
   
   const handleSubmit = (e)=> {
     e.preventDefault()
-
+    console.log(product_description,product_name,product_photo,product_price,product_quantity,product_category);
     
+    const newProduct={
+      id_product:id,
+      product_name:product_name.value,
+      product_price:product_price.value,
+      product_quantity:product_quantity.value,
+      product_photo:product_photo.value,
+      product_description:product_description.value,
+      product_category:product_category.value,
+    }
+    setProducts(newProduct)
+    console.log(products);
+    
+    
+      // try {
+    //   const response= await axios.post("http://localhost:3001/api/mis-productos/agregar", {newProduct})
+
+    //    Swal.fire({
+        //   title: "Producto agregado con exito",
+        //   icon: "success",
+        //   confirmButtonColor: "#68D5E8",
+        //   color:"#323232"
+        // })
+    // } catch (error) {
+      // console.error("Error al agregar producto nuevo:", error);
+    // }
 
   }
 
@@ -60,7 +84,7 @@ const NewPostForm = () => {
 
 
       <Container className='my-4 '>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Col xs={12} sm={5}>
               <Form.Group controlId="formProductName" className='mb-3'>
@@ -94,7 +118,7 @@ const NewPostForm = () => {
 
               <Form.Group controlId="formCategory" className='mb-3'>
                 <Form.Label>Categoria</Form.Label>
-                <Form.Select className='newPostColor' {...category}>
+                <Form.Select className='newPostColor' {...product_category}>
                   <option>Seleciona solo 1 categoria de abajo</option>
                   <option>Figura</option>
                   <option>Peluche</option>
