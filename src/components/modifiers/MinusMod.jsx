@@ -26,7 +26,7 @@ const MinusMod = ({product}) => {
   return (
     <div>
       <Button className='p-1' variant='light'
-      onClick={() => ModquantityMinus(product.id)}
+      onClick={() => ModquantityMinus(product.id_product)}
       ><Dash size={15}/>
       </Button>
     </div>

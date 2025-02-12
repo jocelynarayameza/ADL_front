@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Card, Col, Container, Row, Form } from 'react-bootstrap'
 import Minus from '../modifiers/MinusMod';
 import PlusMod from '../modifiers/PlusMod'
 import { Trash3 } from 'react-bootstrap-icons';
 import moogle from '../../assets/img/moogle.png'
+import { CartContext } from '../../context/CartContext';
 
 
 const CartCard = (product) => {
-  
-  const precioFormat= product.price
+  const {eraseProdCart} = useContext(CartContext)
+  const precioFormat= product.product_price
   const count=product.total_quantity
 
   const plusTotal=precioFormat*count
@@ -18,8 +19,8 @@ const CartCard = (product) => {
     e.preventDefault();
   }
 
-  const eraseProduct = () =>{
-
+  const eraseProduct = (id) =>{
+    eraseProdCart(id)
   }
 
   return (
@@ -32,11 +33,11 @@ const CartCard = (product) => {
           <Col xs={12} sm={6} >
             <Row className="my-1 mx-0 py-2 d-flex justify-content-between align-items-center">
               <Col xs="auto" >
-                <img src={product.img} className='imgCart'/>
+                <img src={product.product_photo} className='imgCart'/>
               </Col>
 
               <Col xs={7} className='mx-2 d-flex flex-column align-items-start justify-content-center'>
-                <h6 className='cartProductTitle'>{product.name}</h6>
+                <h6 className='cartProductTitle'>{product.product_name}</h6>
                 <p className='cartProductShop'>Vendido por: {product.seller}</p>
               </Col>
               </Row>
@@ -56,7 +57,7 @@ const CartCard = (product) => {
               <Col className='px-0 py-1 cartProductPrice pr-3'>{totalFormat}</Col>
 
               <Col className='mx-3 py-1'>
-                <Button onClick={()=>eraseProduct()} className='buttonErase' variant="danger"><Trash3/></Button>
+                <Button onClick={()=>eraseProduct(product.id_product)} className='buttonErase' variant="danger"><Trash3/></Button>
               </Col>
             </Row>
           </Col>

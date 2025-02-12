@@ -66,7 +66,7 @@ const CardDetail = () => {
                 <h4 className="pb-2 textShop">Vendido por: {product.product_seller}</h4>
                 <p className="pb-5">Descripción: {product.product_description}</p>
                 <div>
-                  <p>Cantidad disponible: {product.product_quantity}</p>
+                  {/* <p>Cantidad disponible: {product.product_quantity}</p> */}
                   <div className="d-flex align-items-baseline">
                     <MinusMod product={product}/>
                     <p className="px-2">{counter}</p>

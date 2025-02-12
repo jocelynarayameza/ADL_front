@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import useInput from '../assets/hooks/useInput';
 import { UserContext } from '../context/UserContext';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
@@ -27,15 +28,30 @@ const Register = () => {
     if (password.value===password_confirm.value && password.value.length>=8){
       passConfirmed=true
     } else if (password.value.length<8) {
-      alert("Contrasena tiene que tener 8 caracteres minimo")
+      Swal.fire({
+            title: "Contraseña tiene que tener 8 caracteres mínimo",
+            icon: "error",
+            confirmButtonColor: "#68D5E8",
+            color:"#323232"
+          })
     } else{
-      alert("Contrasenas no son iguales")
+      Swal.fire({
+        title: "Contraseñas no son iguales",
+        icon: "error",
+        confirmButtonColor: "#68D5E8",
+        color:"#323232"
+      })
     }
     if (email.value===email_confirm.value){
       emailConfirmed=true
     }  else{
-      alert("Emails no son iguales")
-    }
+      Swal.fire({
+        title: "Emails no son iguales",
+        icon: "error",
+        confirmButtonColor: "#68D5E8",
+        color:"#323232"
+      })
+}
     
     if(passConfirmed==true && emailConfirmed==true){
       registerUser(
@@ -46,7 +62,8 @@ const Register = () => {
           username:username.value,
           name: name.value,
           lastname: lastname.value,
-          birthday: birthday.value
+          birthday: birthday.value,
+          address:"No tiene direccion agregada"
         })
     }
 
@@ -64,22 +81,22 @@ const Register = () => {
             <Col md={12} lg={6} className='px-5'>
               <Form.Group className="mb-3"  controlId="formName">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control required className='registerLoginColor' type="text" placeholder="Vivi" {...name} />
+                <Form.Control className='registerLoginColor' type="text" placeholder="Vivi" {...name} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formLastname">
                 <Form.Label>Apellido</Form.Label>
-                <Form.Control required className='registerLoginColor' type="text" placeholder="Ornitier" {...lastname} />
+                <Form.Control className='registerLoginColor' type="text" placeholder="Ornitier" {...lastname} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Nombre de usuario</Form.Label>
-                <Form.Control required className='registerLoginColor' type="text" placeholder="Vivi_tienda" {...username} />
+                <Form.Control  className='registerLoginColor' type="text" placeholder="Vivi_tienda" {...username} />
               </Form.Group>
 
               <FormGroup className="mb-3" controlId="formBirthday">
                 <Form.Label>Fecha de nacimiento</Form.Label>
-                <Form.Control required className='registerLoginColor' type="date" placeholder="Vivi_tienda" {...birthday} />
+                <Form.Control className='registerLoginColor' type="date" placeholder="Vivi_tienda" {...birthday} />
               </FormGroup>
 
      
@@ -109,7 +126,7 @@ const Register = () => {
 
           <Row className='registerLoginInput'>
             <Form.Group className="mb-3" controlId="formCheckbox">
-              <Form.Check required className='registerLoginInput2' type="checkbox" label="Aceptas los terminos de contrato" />
+              <Form.Check  className='registerLoginInput2' type="checkbox" label="Aceptas los terminos de contrato" />
             </Form.Group>
               <Button className='registerLoginButton registerLoginInput' variant="info" type="submit">
                 <p className='registerLoginButtonText'>Registrarse</p>

@@ -7,8 +7,13 @@ const useFetchProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await getProducts();
-        setProducts(response);
+        const response = await getProducts()
+
+        // const response = await axios.get("http://localhost:3001/api/productos");
+        // setProducts(response.data);
+        // console.log(response.data)
+        setProducts(response)
+        
       } catch (error) {
         console.log(error);
       }

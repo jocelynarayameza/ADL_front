@@ -10,7 +10,6 @@ const Filters = ({ filterChange }) => {
 
   const valueMinCLP= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(valueMin)
   const valueMaxCLP= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(priceRange)
-  console.log(priceRange);
   
 
   const filtersArray = [

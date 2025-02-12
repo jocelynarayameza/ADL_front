@@ -13,8 +13,9 @@ import axios from 'axios';
 
 
 const NavbarComponent = () => {
-  let {user,setUser} = useContext(UserContext)
-  const userLogged=user.logged
+  let {user,setUser,userLog,setUserLog} = useContext(UserContext)
+  
+  const userLogged=userLog.logged
   const {totalOrder}=useContext(CartContext)
   
   let {activeLink,setActiveLink,setProfileActive} = useContext(ActiveContext);
@@ -24,12 +25,12 @@ const NavbarComponent = () => {
   }
 
   const logoutButton = async () => {
-    const res = await axios.get("http://localhost3001/logout",{
-      headers:{
-        Authorization:`Bearer ${user.token}`,
-    },
-  });
-    setUser({logged:false});
+  //   const res = await axios.get("http://localhost3001/logout",{
+  //     headers:{
+  //       Authorization:`Bearer ${user.token}`,
+  //   },
+  // });
+    setUserLog(false);
     onUpdateActiveLink('home'); 
   }
 

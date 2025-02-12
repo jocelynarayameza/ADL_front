@@ -23,7 +23,7 @@ const PlusMod = ({product}) => {
   return (
     <div>
       <Button className='p-1' variant='light'
-      onClick={() => Modquantity(product.id)}
+      onClick={() => Modquantity(product.id_product)}
       ><Plus size={15}/>
       </Button>
     </div>
