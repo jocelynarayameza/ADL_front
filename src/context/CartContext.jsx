@@ -34,7 +34,7 @@ const CartProvider = ({children}) => {
           const searchProd = cart.find(idProduct =>(idProduct.id_product==id))
           const quantity = {...searchProd,total_quantity:searchProd.total_quantity+1}
           cart.splice(cart.findIndex(idProd => idProd.id_product === id),1,quantity)
-          useEffect(() => { setCart(cart) }, [])
+          setCart(cart)
           
 
         } else {

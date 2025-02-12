@@ -18,6 +18,12 @@ const Address = () => {
       address=addressChange.value
     }
     setUserLog({...userLog,address})
+    Swal.fire({
+      title: "Direccion editada con exito",
+      icon: "success",
+      confirmButtonColor: "#68D5E8",
+      color:"#323232"
+    })
 
       // try {
     //   const response= await axios.put("http://localhost:3001/api/perfil", {userLog})
