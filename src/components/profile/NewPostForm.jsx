@@ -39,7 +39,7 @@ const NewPostForm = () => {
         product_photo:product_photo.value,
         product_description:product_description.value,
         product_category:product_category.value,
-        total_quantity:0
+        // total_quantity:0
       }
       
       setProducts([...products,newProduct])

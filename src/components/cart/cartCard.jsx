@@ -8,7 +8,7 @@ import moogle from '../../assets/img/moogle.png'
 
 const CartCard = (product) => {
   
-  const precioFormat= product.price
+  const precioFormat= product.product_price
   const count=product.total_quantity
 
   const plusTotal=precioFormat*count
@@ -32,11 +32,11 @@ const CartCard = (product) => {
           <Col xs={12} sm={6} >
             <Row className="my-1 mx-0 py-2 d-flex justify-content-between align-items-center">
               <Col xs="auto" >
-                <img src={product.img} className='imgCart'/>
+                <img src={product.product_photo} className='imgCart'/>
               </Col>
 
               <Col xs={7} className='mx-2 d-flex flex-column align-items-start justify-content-center'>
-                <h6 className='cartProductTitle'>{product.name}</h6>
+                <h6 className='cartProductTitle'>{product.product_name}</h6>
                 <p className='cartProductShop'>Vendido por: {product.seller}</p>
               </Col>
               </Row>

@@ -45,27 +45,27 @@ const cartOrders = () => {
          </Form>
           
           <Col className='mt-3 d-flex flex-row justify-content-between cartOrderSub'>
-            <p className='mb-0 p-0'>Numero de productos:</p><p>{totalCart}</p>
+            <p className='mb-0 p-0'>Numero de productos:</p><span>{totalCart}</span>
           </Col>
           <Col className=''>
             <hr className=' m-0 p-0 hr'/>
           </Col>
 
           <Col className='mt-2 d-flex justify-content-between cartOrderSub'>
-            <p className='mb-0'>Subtotal:</p><p>{totalCLP} CLP</p>
+            <p className='mb-0'>Subtotal:</p><span>{totalCLP} CLP</span>
           </Col>
           <Col className='mt-0 d-flex justify-content-between cartOrderSub'>
-            <p className='mb-0'>Descuentos</p><p>{totalDiscount} CLP</p>
+            <p className='mb-0'>Descuentos</p><span>{totalDiscount} CLP</span>
           </Col>
           <Col className='mt-0 d-flex justify-content-between cartOrderSub'>
-            <p className='mb-0'>Despacho:</p><p>{totalDelivery} CLP</p>
+            <p className='mb-0'>Despacho:</p><span>{totalDelivery} CLP</span>
           </Col>
           <Col className=''>
             <hr className=' m-0 p-0 hr'/>
           </Col>
 
           <Col className='mt-3 d-flex justify-content-between cartOrderTotal'>
-            <p className=''>Total:</p><p>{totalOrder} CLP</p>
+            <p className=''>Total:</p><span>{totalOrder} CLP</span>
           </Col>
 
           <Button type='submit' variant='info' className='buttonCheckout'>Comprar</Button>

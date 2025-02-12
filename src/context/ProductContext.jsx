@@ -15,8 +15,8 @@ const ProductProvider = ({children}) => {
      // const response = await axios.get("http://localhost:3001/api/productos");
         // setProducts(response.data);
         // console.log(response.data)
-        let newData=data.map(item =>({...item, total_quantity:0}))
-      setProducts(newData)
+        // let newData=data.map(item =>({...item, total_quantity:0}))
+      setProducts(data)
   }
 
   useEffect (()=>{

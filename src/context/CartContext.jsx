@@ -26,38 +26,38 @@ const CartProvider = ({children}) => {
   const totalOrder= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(Order)
 
   const addCart= async(id)=> {
-    const count=0
-    console.log("28",id);
-    const searchProd=products.find(product => product.id_product===id)
+    console.log(cart);
     
-    console.log("31",searchProd);
+    console.log("28",id);
+    const searchProduct=products.find(product => product.id_product===id)
+    
+    console.log("31",searchProduct);
     console.log("length",cart.length);
     
     if(cart.length===0){
-      setCart([{...searchProd,total_quantity:1}])
+      setCart([{...searchProduct,total_quantity:1}])
     } else{
-      const newAdd=cart.map(cartN =>{
-        console.log("cartN",cartN);
-        
-        if(cartN.id_product==id){
-          console.log("41",cartN.id_product);
-          cartN={...cartN,total_quantity:cartN.total_quantity+1}
-          console.log("45",cartN);
-        
-          
-          return cartN
-        // }else{
-        //   return {...searchProd,total_quantity:1}
-        }
-        
-      })
-      console.log("51",newAdd);
-       
-      setCart([...cart,newAdd[0]])
-    // setCart([...cart,search])
-    console.log("55",cart);
+      
+        if(cart.some(idProduct =>(idProduct.id_product==id))==true){
+          const searchProd = cart.find(idProduct =>(idProduct.id_product==id))
+          console.log("43",searchProd);
+          const quantity = {...searchProd,total_quantity:searchProd.total_quantity+1}
+          const newArray = cart
+          newArray[newArray.findIndex(idProd => idProd.id_product === id)] = quantity
+          setCart(newArray)
+
+        } else {
+          const newArray = cart;
+          newArray.push({...searchProduct,total_quantity:1});
+          setCart(newArray)
+        } 
+      }
     }
-    
+
+    const eraseTotalCart = () => {
+      setCart([])
+    }
+
 
 
     // try {
@@ -80,7 +80,7 @@ const CartProvider = ({children}) => {
     // })
     // console.log(newAdd);
     // setCart(newAdd)
-  }
+  
 
 
 
@@ -103,7 +103,7 @@ const CartProvider = ({children}) => {
   //   getData()
   // },[])
 
-  return <CartContext.Provider value={{cart,setCart,addCart,totalCLP,totalDelivery,totalDiscount, totalCart, totalOrder,setDiscount}}>
+  return <CartContext.Provider value={{cart,setCart,addCart,totalCLP,totalDelivery,totalDiscount, totalCart, totalOrder,setDiscount, eraseTotalCart}}>
     {children}
   </CartContext.Provider>
 }
