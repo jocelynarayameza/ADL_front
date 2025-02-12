@@ -7,7 +7,6 @@ import { ProductContext } from "../context/ProductContext";
 
 const Home = () => {
   const {products} = useContext(ProductContext)
-  console.log(products);
   
   // const products = useFetchProducts();
 

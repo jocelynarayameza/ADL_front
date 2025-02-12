@@ -9,7 +9,7 @@ const UserProvider = ({children}) => {
   const navigate = useNavigate()
 
   const [user,setUser] = useState(
-   [ {email: "viviz@tienda.cl",
+   [ {email: "vivi@tienda.cl",
     password: "12341234",
     username:"viviPrueba",
     name: "Vivi",

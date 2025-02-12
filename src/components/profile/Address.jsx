@@ -7,9 +7,6 @@ import { UserContext } from '../../context/UserContext';
 
 const Address = () => {
   const {userLog,setUserLog} = useContext(UserContext)
-  console.log(userLog.address);
-  console.log(userLog);
-  
   
   let address = userLog.address;
   const addressChange=useInput("")

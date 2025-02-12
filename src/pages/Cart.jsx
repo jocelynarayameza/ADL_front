@@ -13,6 +13,10 @@ const Cart = () => {
     eraseTotalCart()
   }
 
+  useEffect(()=>{
+
+  },[cart])
+
   return (
     <div>
        <h1 id='titleText'>Mi carrito</h1>

@@ -8,8 +8,6 @@ const CartProvider = ({children}) => {
   const [cart,setCart]=useState([])
   const [discount,setDiscount] = useState(0)
   const { products } = useContext(ProductContext)
-  console.log("inicio",cart);
-  
   
   let total= cart.reduce((accumulator ,item) => {
     return accumulator += (parseInt(item.product_price)*parseInt(item.total_quantity))}, 0)
@@ -26,13 +24,7 @@ const CartProvider = ({children}) => {
   const totalOrder= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(Order)
 
   const addCart= async(id)=> {
-    console.log(cart);
-    
-    console.log("28",id);
     const searchProduct=products.find(product => product.id_product===id)
-    
-    console.log("31",searchProduct);
-    console.log("length",cart.length);
     
     if(cart.length===0){
       setCart([{...searchProduct,total_quantity:1}])
@@ -40,16 +32,15 @@ const CartProvider = ({children}) => {
       
         if(cart.some(idProduct =>(idProduct.id_product==id))==true){
           const searchProd = cart.find(idProduct =>(idProduct.id_product==id))
-          console.log("43",searchProd);
           const quantity = {...searchProd,total_quantity:searchProd.total_quantity+1}
-          const newArray = cart
-          newArray[newArray.findIndex(idProd => idProd.id_product === id)] = quantity
-          setCart(newArray)
+          cart.splice(cart.findIndex(idProd => idProd.id_product === id),1,quantity)
+          useEffect(() => { setCart(cart) }, [])
+          
 
         } else {
-          const newArray = cart;
-          newArray.push({...searchProduct,total_quantity:1});
-          setCart(newArray)
+          
+          cart.push({...searchProduct,total_quantity:1});
+          setCart(a=>cart)
         } 
       }
     }
@@ -58,6 +49,11 @@ const CartProvider = ({children}) => {
       setCart([])
     }
 
+    const eraseProdCart = (id) =>{
+      cart.splice(cart.findIndex(prod => (prod.id==id)),1)
+      setCart(cart)
+      
+    }
 
 
     // try {
@@ -99,11 +95,11 @@ const CartProvider = ({children}) => {
  
   // }
 
-  // useEffect (()=>{
-  //   getData()
-  // },[])
+  useEffect (()=>{
 
-  return <CartContext.Provider value={{cart,setCart,addCart,totalCLP,totalDelivery,totalDiscount, totalCart, totalOrder,setDiscount, eraseTotalCart}}>
+  },[cart])
+
+  return <CartContext.Provider value={{cart,setCart,addCart,totalCLP,totalDelivery,totalDiscount, totalCart, totalOrder,setDiscount, eraseTotalCart,eraseProdCart}}>
     {children}
   </CartContext.Provider>
 }

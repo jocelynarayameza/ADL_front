@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { CheckLg } from 'react-bootstrap-icons'
 import { CartContext } from '../../context/CartContext'
@@ -30,6 +30,7 @@ const cartOrders = () => {
     }
   }
 
+  
 
   return (
     <div id='cartFinalOrder' className='p-3 mb-3 mx-2 rounded-3' >
@@ -67,7 +68,7 @@ const cartOrders = () => {
           <Col className='mt-3 d-flex justify-content-between cartOrderTotal'>
             <p className=''>Total:</p><span>{totalOrder} CLP</span>
           </Col>
-
+        
           <Button type='submit' variant='info' className='buttonCheckout'>Comprar</Button>
         </Row>
       </Container>

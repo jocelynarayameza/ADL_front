@@ -13,7 +13,6 @@ const useFetchProducts = () => {
         // setProducts(response.data);
         // console.log(response.data)
         setProducts(response)
-        console.log(products);
         
       } catch (error) {
         console.log(error)
