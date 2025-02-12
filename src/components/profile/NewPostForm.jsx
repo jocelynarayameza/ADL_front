@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const NewPostForm = () => {
   const {products,setProducts} = useContext(ProductContext)
+  console.log(products);
   
   const navigate = useNavigate()
 
@@ -33,14 +34,15 @@ const NewPostForm = () => {
       const newProduct={
         id_product:id,
         product_name:product_name.value,
-        product_price:product_price.value,
+        product_price:parseInt(product_price.value),
         product_quantity:product_quantity.value,
         product_photo:product_photo.value,
         product_description:product_description.value,
         product_category:product_category.value,
+        total_quantity:0
       }
       
-      setProducts(...products,newProduct)
+      setProducts([...products,newProduct])
 
 
         // const swalWithBootstrapButtons = Swal.mixin({
@@ -133,7 +135,7 @@ const NewPostForm = () => {
             <Col xs={12} sm={2}>
               <Form.Group as={Col} controlId="formGridPassword" className='mb-3'>
                 <Form.Label>{"Precio ($ CLP)"}</Form.Label>
-                <Form.Control className='newPostColor' type="price" placeholder="20000" {...product_price} />
+                <Form.Control className='newPostColor' type="number" placeholder="20000" {...product_price} />
               </Form.Group>
     
             </Col>

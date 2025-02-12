@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, FormGroup, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -7,17 +7,21 @@ import { UserContext } from '../../context/UserContext';
 
 const Address = () => {
   const {userLog,setUserLog} = useContext(UserContext)
-
-  let address = userLog.adress;
+  console.log(userLog.address);
+  console.log(userLog);
+  
+  
+  let address = userLog.address;
   const addressChange=useInput("")
 
   const handleSubmit = (e)=>{
     e.preventDefault()
-
+  
     if(addressChange.value!=""){
       address=addressChange.value
     }
     setUserLog({...userLog,address})
+
       // try {
     //   const response= await axios.put("http://localhost:3001/api/perfil", {userLog})
 
@@ -32,6 +36,7 @@ const Address = () => {
     // }
   }
 
+
   return (
     <div className='myAccount'>
       <Container className='whiteColor mb-3'>
@@ -44,8 +49,8 @@ const Address = () => {
           <Row>
             <Col xs={12} sm={8}>
               <Form.Group className="mb-3"  controlId="formBasicAdress">
-               <Form.Label>Direccion actual</Form.Label>
-               <Form.Control className='adressColor' type="text" placeholder={address} {...addressChange} />
+               <Form.Label>Direccion actual: {userLog.address}</Form.Label>
+               <Form.Control className='adressColor' type="text" placeholder="Numero calle, comuna, ciudad, region, pais, codigo postal" {...addressChange} />
               </Form.Group>
             </Col>
             <Col xs={12} sm={4}>

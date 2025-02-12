@@ -5,14 +5,14 @@ import { UserContext } from '../../context/UserContext';
 
 
 const CartAdress = () => {
-  const {user} = useContext(UserContext)
+  const {userLog} = useContext(UserContext)
 
   return (
-    <div id='cartAdress' className='p-3 mb-3 mx-2 rounded-3 border-2' >
+    <div id='cartAddress' className='p-3 mb-3 mx-2 rounded-3 border-2' >
       <Container>
           <p className='cartOrderTitle pt-2 mb-2'>Direccion de envío</p>
         <Row className='d-flex flex-column mb-3'>
-         <p className='mb-1 cartOrderSub'>{"Direccion"}</p>
+         <p className='mb-1 cartOrderSub'>{userLog.address}</p>
   
         </Row>
       </Container>

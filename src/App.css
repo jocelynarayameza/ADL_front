@@ -534,6 +534,10 @@ hr{
 }
 
 /* Cart Adress */
-#cartAdress{
+#cartAddress{
   border: var(--greenColor) solid;
+}
+
+#cartAddress .cartOrderSub{
+  font-size: 1rem;
 }

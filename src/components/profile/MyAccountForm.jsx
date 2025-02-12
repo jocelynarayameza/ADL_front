@@ -45,7 +45,7 @@ const MyAccountForm = () => {
       email=emailChange.value
     }
    setUserLog({...userLog,name,lastname,password,email})
-   console.log("perfil",userLog);
+
       // try {
     //   const response= await axios.put("http://localhost:3001/api/perfil", {userLog})
 

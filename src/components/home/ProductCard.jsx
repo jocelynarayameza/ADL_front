@@ -1,16 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { CartContext } from "../../context/CartContext";
 
 const ProductCard = ({ product_name, product_price, product_photo, id_product }) => {
   const priceCLP= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product_price)
-  const {user} = useContext(UserContext)
+  const {userLog} = useContext(UserContext)
+  const { cart,addCart } = useContext(CartContext)
+
+
   const navigate = useNavigate();
   const details = (idProduct) => {
     navigate(`/producto/${idProduct}`);
   }
+
+  const buttonCart = (idProduct)=>{
+      addCart(idProduct)
+    
+  }
+  
   return (
     <div id="cardProduct">
     <Card style={{ width: "16rem",height:"27rem" }} className="m-5 p-3 border-2 border border-danger-subtle">
@@ -21,8 +31,8 @@ const ProductCard = ({ product_name, product_price, product_photo, id_product })
         <p className="priceText">{priceCLP}</p>
         </Card.Text>
         <Button variant="info" className="mb-2 goDetails px-4" onClick={() => details(id_product)}>Ver detalles</Button>
-        <Button disabled={user.logged ? "":"false"} 
-        variant="warning" className="addCartButton" >Agregar al carrito</Button>
+        <Button disabled={userLog.logged ? "":"false"} 
+        variant="warning" className="addCartButton" onClick={()=>buttonCart(id_product)}>Agregar al carrito</Button>
       </Card.Body>
     </Card>     
     </div>

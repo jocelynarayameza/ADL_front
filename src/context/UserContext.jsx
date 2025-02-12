@@ -15,7 +15,7 @@ const UserProvider = ({children}) => {
     name: "Vivi",
     lastname: "Prueba",
     birthday: "2020-04-12",
-    adress:""}])
+    address:"No tiene agregada direccion"}])
 
   const [userLog,setUserLog] = useState(false)
 
@@ -52,7 +52,6 @@ const UserProvider = ({children}) => {
       })
     } else{
       const search=user.find(mail => mail.email===datos.email)
-      console.log(search.password,datos.password);
       
       if (datos.password===search.password){
         Swal.fire({
