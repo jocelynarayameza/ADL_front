@@ -38,7 +38,7 @@ const MyAccountForm = () => {
     if(lastnameChange.value!=""){
       lastname=lastnameChange.value
     }
-    if(passwordChange.value!=""){
+    if(passwordChange.value!="" && passwordChange.value.length>8){
       password=passwordChange.value
     }
     if(emailChange.value!=""){

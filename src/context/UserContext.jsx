@@ -8,7 +8,15 @@ const UserContext=createContext()
 const UserProvider = ({children}) => {
   const navigate = useNavigate()
 
-  const [user,setUser] = useState([])
+  const [user,setUser] = useState(
+   [ {email: "viviz@tienda.cl",
+    password: "12341234",
+    username:"viviPrueba",
+    name: "Vivi",
+    lastname: "Prueba",
+    birthday: "2020-04-12",
+    adress:""}])
+
   const [userLog,setUserLog] = useState(false)
 
   const registerUser = async (datos)  => {
@@ -35,40 +43,50 @@ const UserProvider = ({children}) => {
   }}
 
   const logInUser = async (datos) => {
-    const search=user.find(mail => mail.email===datos.email)
-    console.log(search.password,datos.password);
-    
-    if (datos.password===search.password){
-      Swal.fire({
-        title: "Autentificacion correcta",
-        icon: "success",
-        confirmButtonColor: "#68D5E8",
-        color:"#323232"
-      })
-      const logg=user.map(loggedT =>{
-        if(loggedT.email===datos.email){
-          return {...loggedT, logged:true}
-        }
-        return logg
-      })  
-      setUserLog(logg[0])
-
-
-    } else if(datos.password!=search.password){
-      Swal.fire({
-        title: "Contrasena incorrecta",
-        icon: "error",
-        confirmButtonColor: "#68D5E8",
-        color:"#323232"
-      })
-    } else {
+    if (user.length===0){
       Swal.fire({
         title: "No existe el usuario",
         icon: "error",
         confirmButtonColor: "#68D5E8",
         color:"#323232"
       })
-    }
+    } else{
+      const search=user.find(mail => mail.email===datos.email)
+      console.log(search.password,datos.password);
+      
+      if (datos.password===search.password){
+        Swal.fire({
+          title: "Autentificación correcta",
+          icon: "success",
+          confirmButtonColor: "#68D5E8",
+          color:"#323232"
+        })
+        const logg=user.map(loggedT =>{
+          if(loggedT.email===datos.email){
+            return {...loggedT, logged:true}
+          }
+          return logg
+        })  
+        setUserLog(logg[0])
+        navigate('/')
+
+      } else if(datos.password!=search.password){
+        Swal.fire({
+          title: "Contraseña incorrecta",
+          icon: "error",
+          confirmButtonColor: "#68D5E8",
+          color:"#323232"
+        })
+      } else {
+        Swal.fire({
+          title: "No existe el usuario",
+          icon: "error",
+          confirmButtonColor: "#68D5E8",
+          color:"#323232"
+        })
+      }
+      }
+    
   
   }
 

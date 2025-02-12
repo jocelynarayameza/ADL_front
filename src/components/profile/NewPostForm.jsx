@@ -6,9 +6,14 @@ import useInput from '../../assets/hooks/useInput';
 import { UserContext } from '../../context/UserContext';
 import { Search } from 'react-bootstrap-icons';
 import { ProductContext } from '../../context/ProductContext';
+import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NewPostForm = () => {
   const {products,setProducts} = useContext(ProductContext)
+  
+  const navigate = useNavigate()
+
   const product_name=useInput("");
   const product_price=useInput("");
   const product_quantity=useInput("");
@@ -22,21 +27,46 @@ const NewPostForm = () => {
   
   const handleSubmit = (e)=> {
     e.preventDefault()
-    console.log(product_description,product_name,product_photo,product_price,product_quantity,product_category);
     
-    const newProduct={
-      id_product:id,
-      product_name:product_name.value,
-      product_price:product_price.value,
-      product_quantity:product_quantity.value,
-      product_photo:product_photo.value,
-      product_description:product_description.value,
-      product_category:product_category.value,
-    }
-    setProducts(newProduct)
-    console.log(products);
-    
-    
+  
+  
+      const newProduct={
+        id_product:id,
+        product_name:product_name.value,
+        product_price:product_price.value,
+        product_quantity:product_quantity.value,
+        product_photo:product_photo.value,
+        product_description:product_description.value,
+        product_category:product_category.value,
+      }
+      
+      setProducts(...products,newProduct)
+
+
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //   customClass: {
+        //     confirmButton: "btn btn-warning",
+        //     cancelButton: "btn btn-info"
+        //   },
+        //   buttonsStyling: true
+        // });
+        // swalWithBootstrapButtons.fire({
+        //   title: "Producto agregado con éxito",
+        //   text: "¿Quieres agregar un nuevo producto?",
+        //   icon: "question",
+        //   showCancelButton: true,
+        //   confirmButtonText: "¡Si!",
+        //   cancelButtonText: "No, llevame al Home",
+        //   reverseButtons: false
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
+        //     location.href = "/perfil/nueva-venta"
+        //   } else (
+        //     location.href = "/"
+        //   )
+        //   })
+        // }
+
       // try {
     //   const response= await axios.post("http://localhost:3001/api/mis-productos/agregar", {newProduct})
 
@@ -50,7 +80,7 @@ const NewPostForm = () => {
       // console.error("Error al agregar producto nuevo:", error);
     // }
 
-  }
+} 
 
 
   return (

@@ -13,7 +13,7 @@ const ProductCard = ({ product_name, product_price, product_photo, id_product })
   }
   return (
     <div id="cardProduct">
-    <Card style={{ width: "16rem" }} className="m-5 p-3 border-2 border border-danger-subtle">
+    <Card style={{ width: "16rem",height:"27rem" }} className="m-5 p-3 border-2 border border-danger-subtle">
       <Card.Img variant="top" src= {product_photo} className="img img-fluid rounded-3" />
       <Card.Body>
         <Card.Title className="title-acme">{product_name}</Card.Title>
