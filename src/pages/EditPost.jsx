@@ -5,6 +5,7 @@ import { Container, Col, Row, Form, FormGroup, Button } from "react-bootstrap";
 import MenuProfile from "../components/profile/MenuProfile";
 import { UserContext } from "../context/UserContext";
 import useInput from "../assets/hooks/useInput";
+import useFetchProducts from "../assets/hooks/useFetchProducts";
 import axios from "axios";
 
 const EditPost = () => {
@@ -19,56 +20,72 @@ const EditPost = () => {
   const photo = useInput("");
   const category = useInput("");
 
-  const handleEdit = async (e) => {
-    e.preventDefault();
-
-    const newDataUser = {
-      product_name: name.value,
-      product_description: description.value,
-      product_price: price.value,
-      product_quantity: quantity.value,
-      product_photo: photo.value,
-      category: category.value,
-    };
-
-    try {
-      await axios.put(
-        `http://localhost:3001/api/mis-productos/${id}`,
-        newDataUser,
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-        }
-      );
-      alert("Producto actualizado correctamente");
-    } catch (error) {
-      console.error("Error al actualizar el producto:", error);
-    }
-  };
+  const products = useFetchProducts();
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/api/mis-productos/${id}`,
-          {
-            headers: { Authorization: `Bearer ${user.token}` },
-          }
-        );
-        setProduct(response.data);
+      const getProduct = async () => {
+        if(products.length > 0) {
+  
+          const id_params = Number(id)
+          const productFound = products.find(prod => prod.id_product === id_params )
+          setProduct(productFound)
+        }
 
-        name.setValue(response.data.product_name);
-        description.setValue(response.data.product_description);
-        price.setValue(response.data.product_price);
-        quantity.setValue(response.data.product_quantity);
-        photo.setValue(response.data.product_photo);
-        category.setValue(response.data.category);
-      } catch (error) {
-        console.error("Error al obtener el producto:", error);
-      }
-    };
+       
+      };
+      getProduct();
+    }, [id, products]);
 
-    fetchProduct();
-  }, [id]);
+  // const handleEdit = async (e) => {
+  //   e.preventDefault();
+
+  //   const newDataUser = {
+  //     product_name: name.value,
+  //     product_description: description.value,
+  //     product_price: price.value,
+  //     product_quantity: quantity.value,
+  //     product_photo: photo.value,
+  //     category: category.value,
+  //   };
+
+  //   try {
+  //     await axios.put(
+  //       `http://localhost:3001/api/mis-productos/${id}`,
+  //       newDataUser,
+  //       {
+  //         headers: { Authorization: `Bearer ${user.token}` },
+  //       }
+  //     );
+  //     alert("Producto actualizado correctamente");
+  //   } catch (error) {
+  //     console.error("Error al actualizar el producto:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:3001/api/mis-productos/${id}`,
+  //         {
+  //           headers: { Authorization: `Bearer ${user.token}` },
+  //         }
+  //       );
+  //       setProduct(response.data);
+
+  //       name.setValue(response.data.product_name);
+  //       description.setValue(response.data.product_description);
+  //       price.setValue(response.data.product_price);
+  //       quantity.setValue(response.data.product_quantity);
+  //       photo.setValue(response.data.product_photo);
+  //       category.setValue(response.data.category);
+  //     } catch (error) {
+  //       console.error("Error al obtener el producto:", error);
+  //     }
+  //   };
+
+  //   fetchProduct();
+  // }, [id]);
 
   return (
     <div>
@@ -80,7 +97,7 @@ const EditPost = () => {
               <h2 className="title-acme">Editar producto</h2>
             </Col>
           </Row>
-          <Form onSubmit={handleEdit}>
+          <Form>
             <Row>
               <Col md={12} lg={6} className="px-5">
                 <Form.Group className="mb-3" controlId="formBasicName">
@@ -88,8 +105,8 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    value={toString(name)}
-                    {...name}
+                    value={product.product_name || name.value}
+                  
                   />
                 </Form.Group>
 
@@ -98,15 +115,18 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    {...photo}
+                    value={product.product_photo || photo.value}                  
+
                   />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicUsername">
                   <Form.Label>Categoría</Form.Label>
 
-                  <Form.Select className="editPostColor" {...category}>
-                    <option value="">Selecciona una categoría</option>
+                  <Form.Select className="editPostColor"                 
+                  >  
+
+                    <option >{product.category || category.value}</option>
                     <option value="Ropa">Ropa</option>
                     <option value="Electrónica">Electrónica</option>
                   </Form.Select>
@@ -118,8 +138,9 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    {...price}
-                  />
+                    value={product.product_price || price.value}                  
+                    />
+  
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -127,8 +148,7 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    {...quantity}
-                  />
+                    value={product.product_quantity || quantity.value}                  />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -138,7 +158,8 @@ const EditPost = () => {
                     className="editPostColor"
                     as="textarea"
                     rows={6}
-                    {...description}
+                    value={product.product_description || description.value}                  
+                    
                   />
                 </Form.Group>
               </Col>

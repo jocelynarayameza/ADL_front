@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ProductContainer from "../components/home/ProductContainer";
 import useFetchProducts from "../assets/hooks/useFetchProducts";
-import { Col, Container, Row } from "react-bootstrap";
-import Filters from "../components/home/Filters";
+import { Container, Row } from "react-bootstrap";
 
 const Home = () => {
   const products = useFetchProducts();
-
   return (
     <>
     <Container fluid className="mt-4">

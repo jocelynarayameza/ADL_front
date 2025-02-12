@@ -1,50 +1,53 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Image, Button, Col, Row, Container } from "react-bootstrap";
 import { UserContext } from "../context/UserContext.jsx";
+import useFetchProducts from "../assets/hooks/useFetchProducts.jsx";
+import MinusMod from "../components/modifiers/MinusMod.jsx";
+import PlusMod from "../components/modifiers/PlusMod.jsx";
 
 const CardDetail = () => {
   const {user} = useContext(UserContext)
   const navigate = useNavigate()
-
   const { id } = useParams();
+  const products = useFetchProducts()
   const [product, setProduct] = useState({});
   const [counter, setCounter] = useState(0);
-  const increaseQuantity = () => {
-    counter < product.cantidad
-      ? setCounter(counter + 1)
-      : setCounter(counter);
-  };
-  const decreaseQuantity = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
-    }
-  };
+  // const increaseQuantity = () => {
+  //   counter < product.cantidad
+  //     ? setCounter(counter + 1)
+  //     : setCounter(counter);
+  // };
+  // const decreaseQuantity = () => {
+  //   if (counter > 0) {
+  //     setCounter(counter - 1);
+  //   }
+  // };
 
   useEffect(() => {
+    const getProduct = async () => {
+      if(products.length > 0) {
 
-    const product = async () => {
-      try {
-      const id_params = Number(id)
-      const productFound = await axios.get(`http://localhost:3001/api/productos/${id_params}`)
-      console.log(productFound.data)
-      setProduct(productFound.data);
-      } catch (error) {
-        console.error("Error al obtener el producto:", error);
-      }
+        const id_params = Number(id)
+        const productFound = products.find(prod => prod.id_product === id_params )
       
+  
+        setProduct(productFound);
+      }
+
+  
     };
-    product();
-  }, [id]);
+    getProduct();
+  }, [id, products]);
+
 
   const goback = () =>{
     navigate('/')
   }
 
 
-  const totalCLP= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.precio)
+  const totalCLP= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.product_price)
 
   return (
     <div id="cardDetail" className="mx-3">
@@ -59,19 +62,15 @@ const CardDetail = () => {
               <Col>
 
                 <h2 className="title-acme">{product.product_nombre}</h2>
-                <h1 className="textPrice pb-2"> ${product.product_precio} CLP</h1>
+                <h1 className="textPrice pb-2"> ${product.product_price} CLP</h1>
                 <h4 className="pb-2 textShop">Vendido por: {product.product_seller}</h4>
                 <p className="pb-5">Descripción: {product.product_description}</p>
                 <div>
                   <p>Cantidad disponible: {product.product_quantity}</p>
                   <div className="d-flex align-items-baseline">
-                    <Button variant="light" onClick={decreaseQuantity}>
-                      -
-                    </Button>
+                    <MinusMod product={product}/>
                     <p className="px-2">{counter}</p>
-                    <Button variant="light" onClick={increaseQuantity}>
-                      +
-                    </Button>
+                    <PlusMod product={product}/>
                   </div>
                 </div>
                 

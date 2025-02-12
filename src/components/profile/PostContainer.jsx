@@ -4,42 +4,45 @@ import { Container, Row, Col } from "react-bootstrap";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 
-const PostContainer = () => {
+const PostContainer = ({products}) => {
   //RECIBIR INFO DE CONTEXT USER
   //CREAR PETICION AXIOS PARA OBTENER PRODUCTOS (RUTA YA ESTA CREADA EN BACKEND)
-  const [products, setProducts] = useState([]);
 
-  const {user}=useContext(UserContext)
-  
+  const { user } = useContext(UserContext);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:3001/api/mis-productos", {
+  //         headers: { Authorization: `Bearer ${user.token}` }
+  //       });
+  //       setProducts(response.data);
+  //       console.log(response.data)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/api/mis-productos", {
-          headers: { Authorization: `Bearer ${user.token}` }
-        });
-        setProducts(response.data);
-        console.log(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-      
-    };
-    fetchProducts();
-  }, [user.token]);
+  //   };
+  //   fetchProducts();
+  // }, [user.token]);
 
   return (
     <Container>
       <Row className="m-3 d-flex justify-content-center">
         <Col>
-          <h2 id='titleProfile' className="my-2">Mis productos</h2>
+          <h2 id="titleProfile" className="my-2">
+            Mis productos
+          </h2>
         </Col>
       </Row>
       <Row className="m-3 d-flex justify-content-center">
         <Col>
-          {products.map((prod) => (
-            <PostCard key={prod.id} {...prod} />
-          ))}
+      
+            {products.map(
+              (
+                prod // ❌ Error: No se deben usar {} aquí dentro
+              ) => <PostCard key={prod.id_product} {...prod} />
+            )}
+         
         </Col>
       </Row>
     </Container>

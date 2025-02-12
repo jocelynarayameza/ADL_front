@@ -29,7 +29,7 @@ const OrderDetail = () => {
           <h3 className="title-acme m-3">Id de compra: {order.id_compra} </h3>
         </Col>
       </Row>
-      <Row className="cardMyProducts mb-5">
+      <Row className="mb-5">
         <Col md={7}>
           {order.productos_comprados
             ? order.productos_comprados.map((producto, index) => (
