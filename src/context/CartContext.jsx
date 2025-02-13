@@ -29,29 +29,31 @@ const CartProvider = ({children}) => {
     if(cart.length===0){
       setCart([{...searchProduct,total_quantity:1}])
     } else{
-      
+
         if(cart.some(idProduct =>(idProduct.id_product==id))==true){
-          const searchProd = cart.find(idProduct =>(idProduct.id_product==id))
-          const quantity = {...searchProd,total_quantity:searchProd.total_quantity+1}
-          cart.splice(cart.findIndex(idProd => idProd.id_product === id),1,quantity)
-          setCart(cart)
-          
+          const newAdd=cart.map(cartN =>{
+            if(cartN.id_product===id){
+              return {...cartN,total_quantity:cartN.total_quantity+1}
+            }
+            return cartN
+          })
+          setCart(newAdd)
 
         } else {
-          
-          cart.push({...searchProduct,total_quantity:1});
-          setCart(a=>cart)
+          setCart([...cart,{...searchProduct,total_quantity:1}])
         } 
       }
     }
 
     const eraseTotalCart = () => {
       setCart([])
+      setDiscount(0)
     }
 
     const eraseProdCart = (id) =>{
-      cart.splice(cart.findIndex(prod => (prod.id==id)),1)
-      setCart(cart)
+      const newArray= cart
+      newArray.splice(cart.findIndex(prod => (prod.id==id)),1)
+      setCart(newArray)
       
     }
 

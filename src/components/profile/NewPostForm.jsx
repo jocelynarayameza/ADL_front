@@ -1,4 +1,4 @@
-import React, { useContext, useId, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, FloatingLabel, FormGroup, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -11,8 +11,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const NewPostForm = () => {
   const {products,setProducts} = useContext(ProductContext)
-  console.log(products);
-  
   const navigate = useNavigate()
 
   const product_name=useInput("");
@@ -22,28 +20,28 @@ const NewPostForm = () => {
   const product_description=useInput("");
   const product_category=useInput("");
   const search=useInput("")
-  const id=useId()
-  
   
   
   const handleSubmit = (e)=> {
     e.preventDefault()
-    
-  
-  
+
       const newProduct={
-        id_product:id,
+        id_product:parseInt(Date.now() * Math.random()),
         product_name:product_name.value,
         product_price:parseInt(product_price.value),
         product_quantity:product_quantity.value,
         product_photo:product_photo.value,
         product_description:product_description.value,
         product_category:product_category.value,
-        // total_quantity:0
       }
       
       setProducts([...products,newProduct])
-
+      Swal.fire({
+        title:"Producto agregado con éxito",
+        icon:"success",
+        confirmButtonColor: "#68D5E8",
+        color:"#323232"
+      })
 
         // const swalWithBootstrapButtons = Swal.mixin({
         //   customClass: {
@@ -62,12 +60,11 @@ const NewPostForm = () => {
         //   reverseButtons: false
         // }).then((result) => {
         //   if (result.isConfirmed) {
-        //     location.href = "/perfil/nueva-venta"
-        //   } else (
-        //     location.href = "/"
-        //   )
+        //     goNewPost = [true];
+        //     // location.href = "/perfil/nueva-venta"
+        //   } else (goHome = [true])
         //   })
-        // }
+        
 
       // try {
     //   const response= await axios.post("http://localhost:3001/api/mis-productos/agregar", {newProduct})
@@ -81,8 +78,12 @@ const NewPostForm = () => {
     // } catch (error) {
       // console.error("Error al agregar producto nuevo:", error);
     // }
+        }
 
-} 
+    const handleSubmitSearch = (e)=> {
+      e.preventDefault()
+      // const response= await axios.get("http://localhost:3001/api/mis-productos/", {search})
+    }
 
 
   return (
@@ -98,7 +99,7 @@ const NewPostForm = () => {
 
       <Container className='align-items-center mt-1 mb-4'>
         <Form.Label>Buscar producto existente</Form.Label>
-        <Form inline onSubmit={handleSubmit} className=''>
+        <Form onSubmit={handleSubmitSearch} className=''>
           <Row>
             <Col xs={10} sm={9}>
               <Form.Control type="text" placeholder="Figura Zidane FFXIV" className=" mr-sm-2 newPostColor" {...search}/>
@@ -121,13 +122,13 @@ const NewPostForm = () => {
             <Col xs={12} sm={5}>
               <Form.Group controlId="formProductName" className='mb-3'>
                 <Form.Label>Nombre del producto</Form.Label>
-                <Form.Control className='newPostColor' type="name" placeholder="Figura Garnet FFXIV" {...product_name}/>
+                <Form.Control required className='newPostColor' type="name" placeholder="Figura Garnet FFXIV" {...product_name}/>
               </Form.Group>
             </Col>
             <Col xs={12} sm={5}>
             <Form.Group className="mb-3" controlId="formGridAddress2">
                 <Form.Label>{"Foto (URL)"}</Form.Label>
-                <Form.Control className='newPostColor' placeholder="http://www.foto.com/foto" {...product_photo} />
+                <Form.Control required className='newPostColor' placeholder="http://www.foto.com/foto" {...product_photo} />
               </Form.Group>
 
   
@@ -135,7 +136,7 @@ const NewPostForm = () => {
             <Col xs={12} sm={2}>
               <Form.Group as={Col} controlId="formGridPassword" className='mb-3'>
                 <Form.Label>{"Precio ($ CLP)"}</Form.Label>
-                <Form.Control className='newPostColor' type="number" placeholder="20000" {...product_price} />
+                <Form.Control required className='newPostColor' type="number" placeholder="20000" {...product_price} />
               </Form.Group>
     
             </Col>
@@ -145,7 +146,7 @@ const NewPostForm = () => {
             <Col xs={12} sm={4} className='d-flex flex-column'>
               <Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Cantidad</Form.Label>
-                <Form.Control className='newPostColor' placeholder="3" {...product_quantity} />
+                <Form.Control required className='newPostColor' placeholder="3" {...product_quantity} />
               </Form.Group>
 
               <Form.Group controlId="formCategory" className='mb-3'>
@@ -173,7 +174,7 @@ const NewPostForm = () => {
                   label="Dimensiones, fabricante, origen, etc."
                   className="mb-3"
                 >
-                  <Form.Control className='textareaColor' as="textarea" {...product_description}/>
+                  <Form.Control required className='textareaColor' as="textarea" {...product_description}/>
                 </FloatingLabel>
               </Form.Group>
 

@@ -17,8 +17,7 @@ const ProductCard = ({ product_name, product_price, product_photo, id_product })
   }
 
   const buttonCart = (idProduct)=>{
-      addCart(idProduct)
-      
+      addCart(idProduct)  
   }
   
   return (
@@ -27,9 +26,7 @@ const ProductCard = ({ product_name, product_price, product_photo, id_product })
       <Card.Img variant="top" src= {product_photo} className="img img-fluid rounded-3" />
       <Card.Body>
         <Card.Title className="title-acme">{product_name}</Card.Title>
-        <Card.Text>
-          <p className="priceText">{priceCLP}</p>
-        </Card.Text>
+        <Card.Text className="priceText">{priceCLP}</Card.Text>
         <Button variant="info" className="mb-2 goDetails px-4" onClick={() => details(id_product)}>Ver detalles</Button>
         <Button
         // disabled={userLog.logged ? "":"false"} 
