@@ -8,16 +8,12 @@ import { ActiveProvider } from '../context/ActiveContext'
 const Profile = () => {
   return (
     <div>
-       <MenuProfile/>
-
+      <MenuProfile/>
       <Container>
-
-      <MyAccountForm/>
-        <hr className='my-4'/>
-      
-      <Address/>
+        <MyAccountForm/>
+          <hr className='my-4'/>   
+        <Address/>
       </Container>
-
     </div>
   )
 }

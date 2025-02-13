@@ -14,7 +14,6 @@ import axios from 'axios';
 
 const NavbarComponent = () => {
   let {user,setUser,userLog,setUserLog} = useContext(UserContext)
-  console.log(userLog);
   
   const userLogged=userLog.logged
   const {totalOrder}=useContext(CartContext)

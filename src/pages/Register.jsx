@@ -79,22 +79,22 @@ const Register = () => {
             <Col md={12} lg={6} className='px-5'>
               <Form.Group className="mb-3"  controlId="formName">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control className='registerLoginColor' type="text" placeholder="Vivi" {...name} />
+                <Form.Control required className='registerLoginColor' type="text" placeholder="Vivi" {...name} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formLastname">
                 <Form.Label>Apellido</Form.Label>
-                <Form.Control className='registerLoginColor' type="text" placeholder="Ornitier" {...lastname} />
+                <Form.Control required className='registerLoginColor' type="text" placeholder="Ornitier" {...lastname} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Nombre de usuario</Form.Label>
-                <Form.Control  className='registerLoginColor' type="text" placeholder="Vivi_tienda" {...username} />
+                <Form.Control required className='registerLoginColor' type="text" placeholder="Vivi_tienda" {...username} />
               </Form.Group>
 
               <FormGroup className="mb-3" controlId="formBirthday">
                 <Form.Label>Fecha de nacimiento</Form.Label>
-                <Form.Control className='registerLoginColor' type="date" placeholder="Vivi_tienda" {...birthday} />
+                <Form.Control required className='registerLoginColor' type="date" placeholder="Vivi_tienda" {...birthday} />
               </FormGroup>
 
      

@@ -7,7 +7,7 @@ import { UserContext } from '../../context/UserContext';
 import { Search } from 'react-bootstrap-icons';
 import { ProductContext } from '../../context/ProductContext';
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const NewPostForm = () => {
   const {products,setProducts} = useContext(ProductContext)
@@ -42,29 +42,6 @@ const NewPostForm = () => {
         confirmButtonColor: "#68D5E8",
         color:"#323232"
       })
-
-        // const swalWithBootstrapButtons = Swal.mixin({
-        //   customClass: {
-        //     confirmButton: "btn btn-warning",
-        //     cancelButton: "btn btn-info"
-        //   },
-        //   buttonsStyling: true
-        // });
-        // swalWithBootstrapButtons.fire({
-        //   title: "Producto agregado con éxito",
-        //   text: "¿Quieres agregar un nuevo producto?",
-        //   icon: "question",
-        //   showCancelButton: true,
-        //   confirmButtonText: "¡Si!",
-        //   cancelButtonText: "No, llevame al Home",
-        //   reverseButtons: false
-        // }).then((result) => {
-        //   if (result.isConfirmed) {
-        //     goNewPost = [true];
-        //     // location.href = "/perfil/nueva-venta"
-        //   } else (goHome = [true])
-        //   })
-        
 
       // try {
     //   const response= await axios.post("http://localhost:3001/api/mis-productos/agregar", {newProduct})

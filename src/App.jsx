@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { UserContext } from './context/UserContext.jsx';
 
 import Cart from './pages/Cart'
 import Home from './pages/Home'
@@ -21,9 +23,8 @@ import MyOrders from './pages/MyOrders.jsx';
 import NotFound from './pages/NotFound.jsx';
 import OrderDetail from './pages/OrderDetail.jsx';
 
-
 function App() {
-
+  const {userLog}=useContext(UserContext)
   return (
     <>
     <NavbarComponent />
@@ -32,15 +33,17 @@ function App() {
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/producto/:id" element={<CardDetail />} /> 
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Register />} />
-        <Route path="/perfil/" element={<Profile />} /> 
-        <Route path="/perfil/nueva-venta" element={<NuevaVenta />} />
-        <Route path="/perfil/mis-productos" element={<MyProducts />} />
-        <Route path="/perfil/mis-productos/:id" element={<EditPost/>} /> 
-        <Route path="/perfil/pedidos-anteriores" element={<MyOrders />} />
-        <Route path="/perfil/pedidos-anteriores/:id" element={<OrderDetail />} />
-        <Route path="/carrito" element={<Cart />} />
+        <Route path="/login" element={!userLog.logged ? <Login />:<Navigate to='/'/>} />
+        <Route path="/registro" element={!userLog.logged ? <Register />:<Navigate to='/'/>} />
+
+        <Route path="/perfil/" element={userLog.logged ? <Profile />:<Navigate to='/login'/>} /> 
+        <Route path="/perfil/nueva-venta" element={userLog.logged ? <NuevaVenta />:<Navigate to='/login'/>} />
+        <Route path="/perfil/mis-productos" element={userLog.logged ? <MyProducts />:<Navigate to='/login'/>} />
+        <Route path="/perfil/mis-productos/:id" element={userLog.logged ? <EditPost/>:<Navigate to='/login'/>} /> 
+        <Route path="/perfil/pedidos-anteriores" element={userLog.logged ? <MyOrders />:<Navigate to='/login'/>} />
+        <Route path="/perfil/pedidos-anteriores/:id" element={userLog.logged ? <OrderDetail />:<Navigate to='/login'/>} />
+        <Route path="/carrito" element={userLog.logged ? <Cart />:<Navigate to='/login'/>} />
+        
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
  
