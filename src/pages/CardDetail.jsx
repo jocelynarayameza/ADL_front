@@ -61,9 +61,9 @@ const CardDetail = () => {
               </Col>
               <Col>
 
-                <h2 className="title-acme">{product.product_nombre}</h2>
+                <h2 className="title-acme">{product.product_name}</h2>
                 <h1 className="textPrice pb-2"> ${product.product_price} CLP</h1>
-                <h4 className="pb-2 textShop">Vendido por: {product.product_seller}</h4>
+                <h4 className="pb-2 textShop">Vendido por: {product.seller}</h4>
                 <p className="pb-5">Descripción: {product.product_description}</p>
                 <div>
                   {/* <p>Cantidad disponible: {product.product_quantity}</p> */}
