@@ -166,7 +166,7 @@ hr{
 
 
 .registerLoginColor{
-  border: var(--redColor) solid 2px;
+  border: #4aab5f solid 2px;
   width: 20rem;
 }
 
@@ -371,7 +371,7 @@ hr{
 }
 
 .textareaColor{
-  border: var(--redColor) solid 2px;
+  border:var(--redColor) solid 2px;
   width: 100%;
   height: 100% !important;
 }
@@ -500,7 +500,7 @@ hr{
 
  /*Edit Post*/
 .editPostColor {
-  border: var(--redColor) solid 2px;
+  border: #59a76a solid 2px;
   
 }
 
