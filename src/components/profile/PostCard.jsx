@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import useFetchProducts from "../../assets/hooks/useFetchProducts";
-const PostCard = ({ product_name, product_description, product_photo, id_product }) => {
+const PostCard = ({ product_name, product_description, product_photo, id_product, product_price, product_quantity }) => {
   const navigate = useNavigate();
   const edit = (idProduct) => {
     navigate(`/perfil/mis-productos/${idProduct}`);
@@ -45,6 +45,12 @@ const PostCard = ({ product_name, product_description, product_photo, id_product
             </div>
             <div div className="p-2">
               {product_description}
+            </div>
+            <div div className="p-2">
+              Precio: ${product_price}
+            </div>
+            <div div className="p-2 ">
+              Cantidad: {product_quantity}
             </div>
           </div>
         </Col>
