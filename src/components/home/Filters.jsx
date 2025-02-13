@@ -16,9 +16,9 @@ const Filters = ({ filterChange }) => {
     "Figura",
     "Peluche",
     "Pixel Art",
-    "Música",
-    "Juego físico",
-    "Papelería",
+    "Musica",
+    "Juego fisico",
+    "Papeleria",
     "Vajilla",
     "Accesorios",
     "Ropa",
@@ -81,7 +81,7 @@ const Filters = ({ filterChange }) => {
             </Form.Group>
             <Form.Group className="px-3">
               <Form.Label className="priceRangeText">Precio máximo: <span className="priceRange">{valueMaxCLP}</span></Form.Label>
-              <Form.Range className="custom-range" min={0} max={300000} step={1000} value={priceRange}
+              <Form.Range className="custom-range" min={0} max={200000} step={1000} value={priceRange}
               onChange={handlePrice}/>
             </Form.Group>
         </Col>
