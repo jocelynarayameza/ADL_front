@@ -8,8 +8,6 @@ const CartProvider = ({children}) => {
   const [cart,setCart]=useState([])
   const [discount,setDiscount] = useState(0)
   const { products } = useContext(ProductContext)
-  console.log("inicio",cart);
-  
   
   let total= cart.reduce((accumulator ,item) => {
     return accumulator += (parseInt(item.product_price)*parseInt(item.total_quantity))}, 0)

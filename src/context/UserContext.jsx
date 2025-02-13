@@ -30,8 +30,7 @@ const UserProvider = ({children}) => {
         color:"#323232"
       }) 
       setUser([...user, datos])
-      
-      
+      console.log(user);
       
     } else {
       Swal.fire({
@@ -60,13 +59,8 @@ const UserProvider = ({children}) => {
           confirmButtonColor: "#68D5E8",
           color:"#323232"
         })
-        const logg=user.map(loggedT =>{
-          if(loggedT.email===datos.email){
-            return {...loggedT, logged:true}
-          }
-          return logg
-        })  
-        setUserLog(logg[0])
+        
+        setUserLog({...search, logged:true})
         navigate('/')
 
       } else if(datos.password!=search.password){
