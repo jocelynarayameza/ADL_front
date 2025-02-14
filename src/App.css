@@ -511,6 +511,12 @@ hr{
   border: var(--skyBlue);
 }
 
+.priceTextPostCard{
+  color: var(--greenColor);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
 /*CSS orders*/
 
 .ordersImg {

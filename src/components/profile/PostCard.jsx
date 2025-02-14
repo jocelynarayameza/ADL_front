@@ -10,6 +10,7 @@ const PostCard = ({ product_name, product_description, product_photo, id_product
     navigate(`/perfil/mis-productos/${idProduct}`);
   };
 
+  const totalFormat= new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product_price)
   const {user} = useContext(UserContext)
 
   // const handleDelete = (id) => {
@@ -43,13 +44,13 @@ const PostCard = ({ product_name, product_description, product_photo, id_product
             <div className="p-2">
               <h4 className="title-acme">{product_name}</h4>
             </div>
-            <div div className="p-2">
+            <div div className="p-1">
               {product_description}
             </div>
-            <div div className="p-2">
-              Precio: ${product_price}
+            <div div className="p-1 priceTextPostCard">
+              Precio: {totalFormat}
             </div>
-            <div div className="p-2 ">
+            <div div className="p-1 ">
               Cantidad: {product_quantity}
             </div>
           </div>

@@ -10,7 +10,6 @@ const ProductCard = ({ product_name, product_price, product_photo, id_product })
   const {userLog} = useContext(UserContext)
   const { cart,addCart } = useContext(CartContext)
 
-
   const navigate = useNavigate();
   const details = (idProduct) => {
     navigate(`/producto/${idProduct}`);
