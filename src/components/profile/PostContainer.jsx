@@ -5,8 +5,6 @@ import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 
 const PostContainer = ({products}) => {
-  //RECIBIR INFO DE CONTEXT USER
-  //CREAR PETICION AXIOS PARA OBTENER PRODUCTOS (RUTA YA ESTA CREADA EN BACKEND)
 
   const { user } = useContext(UserContext);
   // useEffect(() => {
@@ -39,7 +37,7 @@ const PostContainer = ({products}) => {
       
             {products.map(
               (
-                prod // ❌ Error: No se deben usar {} aquí dentro
+                prod 
               ) => <PostCard key={prod.id_product} {...prod} />
             )}
          

@@ -5,7 +5,7 @@ import PaginationComponent from "./Pagination";
 import { Container, Row, Col, Form, Button, Offcanvas } from "react-bootstrap";
 import { Funnel, Search } from "react-bootstrap-icons";
 
-const ProductContainer = ({ products, filterChange }) => {
+const ProductContainer = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [categories, setCategories] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
@@ -31,8 +31,8 @@ const ProductContainer = ({ products, filterChange }) => {
     );
     filtered = filtered.filter(
       (product) =>
-        // product.product_price >= priceRange[0] &&
-        product.product_price <= priceRange
+        product.product_price >= priceRange[0] &&
+        product.product_price <= priceRange[1]
     );
 
     if (search) {
