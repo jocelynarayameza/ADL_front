@@ -9,6 +9,7 @@ const CartProvider = ({children}) => {
   const [discount,setDiscount] = useState(0)
   const { products } = useContext(ProductContext)
   
+  
   let total= cart.reduce((accumulator ,item) => {
     return accumulator += (parseInt(item.product_price)*parseInt(item.total_quantity))}, 0)
 
@@ -51,9 +52,9 @@ const CartProvider = ({children}) => {
     }
 
     const eraseProdCart = (id) =>{
-      const index = ()=> cart.findIndex(prod => (prod.id_product==id))
-      const newArray= cart.splice(cart.findIndex(index,1));
-      setCart(newArray)
+      const index = cart.findIndex(prod => (prod.id_product==id));
+      const newArray = cart.toSpliced(index,1);
+      setCart(newArray);
     }
 
 
