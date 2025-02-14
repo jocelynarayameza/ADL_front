@@ -23,18 +23,17 @@ const EditPost = () => {
   const products = useFetchProducts();
 
   useEffect(() => {
-      const getProduct = async () => {
-        if(products.length > 0) {
-  
-          const id_params = Number(id)
-          const productFound = products.find(prod => prod.id_product === id_params )
-          setProduct(productFound)
-        }
-
-       
-      };
-      getProduct();
-    }, [id, products]);
+    const getProduct = async () => {
+      if (products.length > 0) {
+        const id_params = Number(id);
+        const productFound = products.find(
+          (prod) => prod.id_product === id_params
+        );
+        setProduct(productFound);
+      }
+    };
+    getProduct();
+  }, [id, products]);
 
   // const handleEdit = async (e) => {
   //   e.preventDefault();
@@ -73,12 +72,6 @@ const EditPost = () => {
   //       );
   //       setProduct(response.data);
 
-  //       name.setValue(response.data.product_name);
-  //       description.setValue(response.data.product_description);
-  //       price.setValue(response.data.product_price);
-  //       quantity.setValue(response.data.product_quantity);
-  //       photo.setValue(response.data.product_photo);
-  //       category.setValue(response.data.category);
   //     } catch (error) {
   //       console.error("Error al obtener el producto:", error);
   //     }
@@ -105,8 +98,7 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    value={product.product_name || name.value}
-                  
+                    placeholder={product.product_name || name.value}
                   />
                 </Form.Group>
 
@@ -115,20 +107,24 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    value={product.product_photo || photo.value}                  
-
+                    placeholder={product.product_photo || photo.value}
                   />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicUsername">
                   <Form.Label>Categoría</Form.Label>
 
-                  <Form.Select className="editPostColor"                 
-                  >  
-
-                    <option >{product.category || category.value}</option>
-                    <option value="Ropa">Ropa</option>
-                    <option value="Electrónica">Electrónica</option>
+                  <Form.Select className="editPostColor">
+                    <option>{product.category || category.value}</option>
+                    <option value="Figura">Figura</option>
+                  <option value="Peluche">Peluche</option>
+                  <option value="Pixel art">Pixel art</option>
+                  <option value="Musica">Música</option>
+                  <option value="Juego fisico">Juego físico</option>
+                  <option value="papeleriaa">Papelería</option>
+                  <option value="Vajilla">Vajilla</option>
+                  <option value="Accesorio">Accesorios</option>
+                  <option value="Ropa">Ropa</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -138,9 +134,8 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    value={product.product_price || price.value}                  
-                    />
-  
+                    placeholder={product.product_price || price.value}
+                  />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -148,7 +143,8 @@ const EditPost = () => {
                   <Form.Control
                     className="editPostColor"
                     type="text"
-                    value={product.product_quantity || quantity.value}                  />
+                    placeholder={product.product_quantity || description.value}
+                  />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -158,8 +154,7 @@ const EditPost = () => {
                     className="editPostColor"
                     as="textarea"
                     rows={6}
-                    value={product.product_description || description.value}                  
-                    
+                    placeholder={product.product_description || description.value}
                   />
                 </Form.Group>
               </Col>
