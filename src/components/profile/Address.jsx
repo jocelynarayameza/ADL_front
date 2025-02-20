@@ -51,17 +51,19 @@ const Address = () => {
         <Form onSubmit={handleSubmit} >
           <Row>
             <Col xs={12} sm={8}>
-              <Form.Group className="mb-3"  controlId="formBasicAdress">
+              <Form.Group className="mb-3"  controlId="formBasicAddress">
                <Form.Label>Direccion actual: {userLog.address}</Form.Label>
-               <Form.Control className='adressColor' type="text" placeholder="Numero calle, comuna, ciudad, region, pais, codigo postal" {...addressChange} />
+               <Form.Control className='addressColor' type="text" placeholder="Numero calle, comuna, ciudad, region, pais, codigo postal" {...addressChange} />
               </Form.Group>
             </Col>
-            <Col xs={12} sm={4}>
-              <Button className='registerLoginButton registerLoginInput mt-4' variant="info" type="submit">
-                <p className='registerLoginButtonText'>Editar</p>
-              </Button>
-            </Col>
           </Row>
+          <Row className=' align-items-start'>
+            <Button className='registerLoginButton registerLoginInput mt-4' variant="info" type="submit">
+              <p className='registerLoginButtonText'>Editar</p>
+            </Button>
+          </Row>
+
+  
         </Form>
       </Container>
     </div>

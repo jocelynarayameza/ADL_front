@@ -4,7 +4,7 @@ import { CheckLg } from 'react-bootstrap-icons'
 import { UserContext } from '../../context/UserContext';
 
 
-const CartAdress = () => {
+const Cartaddress = () => {
   const {userLog} = useContext(UserContext)
 
   return (
@@ -20,4 +20,4 @@ const CartAdress = () => {
   )
 }
 
-export default CartAdress
+export default Cartaddress

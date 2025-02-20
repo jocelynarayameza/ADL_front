@@ -47,7 +47,7 @@ const MyAccountForm = () => {
    setUserLog({...userLog,name,lastname,password,email})
 
       // try {
-    //   const response= await axios.put("http://localhost:3001/api/perfil", {userLog})
+    //   const response= await axios.put("http://localhost:3000/api/perfil", {userLog})
 
     //    Swal.fire({
         //   title: "Perfil editado con exito",
@@ -131,7 +131,7 @@ const MyAccountForm = () => {
             </Col>
           </Row>
 
-          <Row className='registerLoginInput'>
+          <Row className='registerLoginInput align-items-start'>
               <Button className='registerLoginButton registerLoginInput' variant="info" type="submit">
                 <p className='registerLoginButtonText'>Editar</p>
               </Button>

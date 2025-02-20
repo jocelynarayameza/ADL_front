@@ -3,7 +3,7 @@ import CartCard from '../components/cart/cartCard.jsx'
 import CartOrder from '../components/cart/CartOrder'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { CartContext } from '../context/CartContext'
-import CartAdress from '../components/cart/CartAdress'
+import Cartaddress from '../components/cart/CartAdress'
 
 const Cart = () => {
   const {cart, eraseTotalCart}=useContext(CartContext)
@@ -31,7 +31,7 @@ const Cart = () => {
            <Button variant='danger' className='buttonErase ms-2 my-3' onClick={eraseCart}>Vaciar el carrito</Button>
           </Col>
           <Col xs={12} sm={12} md={12} lg={4} className='p-0'>
-          <CartAdress/>
+          <Cartaddress/>
           <CartOrder/>
           </Col>
         </Row>

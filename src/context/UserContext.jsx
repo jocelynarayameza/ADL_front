@@ -92,7 +92,7 @@ const UserProvider = ({children}) => {
       //   name: datos.name,
       //   lastname: datos.lastname,
       //   birthday: datos.birthday,
-      //   adress:""})
+      //   address:""})
       // localStorage.setItem("token", res.data.token)
       // if (res.data.msg=='Registrado satisfactoriamente'){
       //   Swal.fire({
@@ -165,9 +165,7 @@ const UserProvider = ({children}) => {
   //   },[])
   // }
 
-  useEffect(()=>{
 
-  },[userLog])
 
   return <UserContext.Provider value={{user,setUser,registerUser,logInUser,userLog,setUserLog}}>
   {children}
